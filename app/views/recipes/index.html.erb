@@ -1,0 +1,30 @@
+<%= render 'shared/page_title', title: 'All Recipes' %>
+
+
+<% @recipes.each do |recipe| %>
+ 
+<!--space made for the avatar image to be displayed in index page were list of all recipec are diplayed-->
+  <div class="row">
+    
+    <div class="col-md-2">
+      <section class="chef_info center">
+        <%= gravatar_for recipe.chef, size: 120 %>
+        <h5>Chef name: <%= recipe.chef.chefname %></h5>
+        
+      </section>
+    </div>
+    
+    <!--displays the recipes name and summary and if the name is clicked will take to show page-->
+    <div class="col-lg-8 well">
+      <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
+      <p><%= recipe.summary %></p>
+      <p>
+        <span class='quiet'><small> <%= time_ago_in_words(recipe.created_at) %> ago </small></span>
+      </p>
+    </div>
+    
+  </div>
+  
+  <hr/>
+
+<% end %>

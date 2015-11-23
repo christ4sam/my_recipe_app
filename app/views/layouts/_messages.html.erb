@@ -1,0 +1,13 @@
+<!--this code is used to dispaly any full message-->
+<!--it displays all our error messages be it success, warning of denger messages 
+at the top of our pages-->
+<div class="row">
+  <div class="col-md-10">
+    <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %>
+    <!--this will give us the + sign to click on and closs the message box-->
+      <a class="close" data-dismiss="alert">&#215;</a>
+    </div>
+    <% end %>
+  </div>
+</div>

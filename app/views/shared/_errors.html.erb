@@ -1,0 +1,19 @@
+<!--here we want to display any error encounter when creating new recipe or editing recipe and for any other object eg chef, 
+if any list them out with the
+help of our code in the message.html.erb partial -->
+
+<!--the obj here referred to any object in our app 
+since this error message will be share by all the objects in our application-->
+
+<% if obj.errors.any? %>  
+<div class="row">
+  <div class="alert alert-danger col-md-8 col-md-offset-2">
+    <h5>Please correct the following errors:</h5>
+    <ul>
+      <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>

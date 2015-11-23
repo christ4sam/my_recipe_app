@@ -1,0 +1,29 @@
+
+<%= render 'shared/page_title', title: @recipe.name %>
+
+
+<!--//this is were the gravatar image will be displays on the show recipe page for individual recipe//-->
+<div class="row">
+  <div class="col-md-4 pull-right center">
+    <%= gravatar_for @recipe.chef, size: 200 %>
+    
+    <p>
+      <h5>Brought to you by: <%= @recipe.chef.chefname %></h5>
+    </p>
+  </div>
+
+  <!---Here we are displaying the summary and discription of the recipe in the show page-->
+  <div class="col-md-8">
+    <h3><%= @recipe.summary %></h3>
+    
+    <div class="well">
+      <p><strong>Steps to make this dish:</strong></p>
+      <%= simple_format(@recipe.description) %>
+    </div>
+    
+    <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-success pull-right" %>
+  </div>
+</div>
+
+<!--this link is in the recipe show page will take us back to the page that lists all our recipes-->
+<h5><%= link_to 'Return to Recipes', recipes_path, class: "btn btn-warning btn-small"%></h5>
