@@ -15,12 +15,17 @@
     </div>
     
     <!--displays the recipes name and summary and if the name is clicked will take to show page-->
-    <div class="col-lg-8 well">
+    <div class="col-lg-6 well">
       <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
       <p><%= recipe.summary %></p>
       <p>
         <span class='quiet'><small> <%= time_ago_in_words(recipe.created_at) %> ago </small></span>
       </p>
+    </div>
+    
+    <!--thi code enable us to upload image in the recipe listing page if there is picture for the recipe -->
+    <div class="col-md-4">
+      <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
     </div>
     
   </div>
