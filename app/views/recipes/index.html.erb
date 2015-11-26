@@ -1,5 +1,7 @@
 <%= render 'shared/page_title', title: 'All Recipes' %>
 
+<%= will_paginate %>
+
 
 <% @recipes.each do |recipe| %>
  
@@ -18,9 +20,24 @@
     <div class="col-lg-6 well">
       <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
       <p><%= recipe.summary %></p>
+      
+      <!--diplays on the page when each recipe was created and updated-->
       <p>
-        <span class='quiet'><small> <%= time_ago_in_words(recipe.created_at) %> ago </small></span>
+        <span class='quiet'><small> Created: <%= time_ago_in_words(recipe.created_at) %> ago, </small></span>
+        <span class='quiet'><small> Updated: <%= time_ago_in_words(recipe.updated_at) %> ago </small></span>
       </p>
+      
+       <!--here we are displaying our likes tumbup/tumbdown future-->
+      <div class="pull-right">
+        <%= link_to like_recipe_path(recipe, like: true), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= recipe.thumbs_up_total %>
+        <% end %>
+          &nbsp&nbsp&nbsp&nbsp
+        <%= link_to like_recipe_path(recipe, like: false), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= recipe.thumbs_down_total %>
+        <% end %>
+        </div>
+      
     </div>
     
     <!--thi code enable us to upload image in the recipe listing page if there is picture for the recipe -->
@@ -33,3 +50,5 @@
   <hr/>
 
 <% end %>
+
+<%= will_paginate %>

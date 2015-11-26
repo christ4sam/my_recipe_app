@@ -1,7 +1,13 @@
 class RecipesController < ApplicationController
-  
+  #here we are sorting the recipe by most popular with the highest vote
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.paginate(page: params[:page], per_page: 4)
+ 
+  end
+  
+  
+  def show 
+    @recipe = Recipe.find(params[:id])
     
   end
   
@@ -54,10 +60,21 @@ class RecipesController < ApplicationController
   end
   
   
-  def show 
+  #this is our like action for our recipe conotroller that gives 
+  #chef the ability to find and like recipe
+  def like
     @recipe = Recipe.find(params[:id])
+    like = Like.create(like: params[:like], chef: Chef.first, recipe:@recipe)
+    if like.valid?
+      flash[:success] = "Your selection was successful"
+      redirect_to :back
+  else
+    flash[:danger] = "You can only like/dislike a recipe once"
     
+    redirect_to :back
   end
+  
+end
   
   # here we are whitelisting or writting out the peramiters our app can permit to flow through
   # for creating a new recipe with our new form 

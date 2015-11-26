@@ -24,6 +24,18 @@
     <div class="well">
       <p><strong>Steps to make this dish:</strong></p>
       <%= simple_format(@recipe.description) %>
+      
+      <!--here we are displaying our likes tumbup/tumbdown future-->
+      <div class="pull-right">
+        <%= link_to like_recipe_path(@recipe, like: true), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-up"></i> &nbsp <%= @recipe.thumbs_up_total %>
+        <% end %>
+          &nbsp&nbsp&nbsp&nbsp
+        <%= link_to like_recipe_path(@recipe, like: false), method: :post do %>
+          <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= @recipe.thumbs_down_total %>
+        <% end %>
+        </div>
+      </div>
     </div>
     
     <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-success pull-right" %>
