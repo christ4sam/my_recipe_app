@@ -1,22 +1,28 @@
-<%= render 'shared/page_title', title: 'All Recipes' %>
-
-<%= will_paginate %>
+<%= render 'shared/page_title', title: "Chef: "  + @chef.chefname %>
 
 
-<% @recipes.each do |recipe| %>
- 
-<!--space made for the avatar image to be displayed in index page were list of all recipec are diplayed-->
+<!--//this is were the gravatar image will be displays on the show chef page for individual recipe//-->
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= gravatar_for @chef, size: 200 %>
+    <hr/>
+  </div>
+  </div>
+  
+   <!--here we are including page paginate to chef show page to diplay few recipes of the chef on each page-->
+   <div class="row">
+     <div class="col-md-4 col-md-offset-4 center">
+       <h3><em><%= @chef.chefname %> Recipes:</em></h3>
+       <%= will_paginate @recipes %>
+     </div>
+   </div>
+  
+  <!--Here we want to display all the recipes created by this chef-->
+  
+  <% @recipes.each do |recipe| %>
+   <!--displays the recipes name and summary and if the name is clicked will take to show page-->
   <div class="row">
-    
-    <div class="col-md-2">
-      <section class="chef_info center">
-        <%= gravatar_for(recipe.chef, size: 120) if recipe.chef.email? %>
-        <h5>Chef name: <%= recipe.chef.chefname %></h5>
-      </section>
-    </div>
-    
-    <!--displays the recipes name and summary and if the name is clicked will take to show page-->
-    <div class="col-lg-6 well">
+    <div class="col-lg-6 well col-lg-offset-3">
       <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
       <p><%= recipe.summary %></p>
       
@@ -36,17 +42,7 @@
           <i class="glyphicon glyphicon-thumbs-down"></i> &nbsp <%= recipe.thumbs_down_total %>
         <% end %>
         </div>
-      
+      </div>
     </div>
+  <% end %>
     
-    <!--thi code enable us to upload image in the recipe listing page if there is picture for the recipe -->
-    <div class="col-md-4">
-      <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
-    </div>
-    
-  </div>
-  
-  <hr/>
-
-<% end %>
-<%= will_paginate %>

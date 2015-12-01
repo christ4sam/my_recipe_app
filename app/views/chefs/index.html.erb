@@ -1,0 +1,23 @@
+
+<%= render 'shared/page_title', title:  "All chefs" %>
+
+<!--paginatingg the page to display 3 chefs in each page-->
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= will_paginate %>
+  </div>
+</div>
+
+<!--here we are intrating or looping through the all the chefs we have and displaying all the chefs and 
+<!--Here we are also displaying the chef name and profile image of each chef using our gravatar-->
+
+<% @chefs.each do |chef| %>
+   <div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= link_to gravatar_for(chef, size: 200), chef_path(chef) %>  <!--add link to the gravatar image to take 
+    us to chef show page-->
+    <p><h5>Chef name: <%= chef.chefname %></h5></p>
+  </div>
+</div>
+
+<% end %>

@@ -18,7 +18,19 @@ Rails.application.routes.draw do
    member do
      post 'like'
    end
- end
+      
+  end
+  
+  resources :chefs, except: [:new]
+  get '/register', to: 'chefs#new'
+  
+  
+  get '/login', to: "logins#new" #login -> new session
+  post '/login', to: "logins#create" # logout -> create session
+  get '/logout', to: "logins#destroy"  # post -> closs session
+  
+ 
+  
 end
  
  

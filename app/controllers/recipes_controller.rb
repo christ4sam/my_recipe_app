@@ -24,12 +24,12 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.chef = Chef.find(2)   #the chef object creating recipe
     
-     if @recipe.save
-      flash[:success] = "Your recipe was created successfully!"
-      redirect_to recipes_path
+      if @recipe.save
+        flash[:success] = "Your recipe was created successfully!"
+        redirect_to recipes_path
     else
       render :new
-    end
+      end
     
   end
   #  to this point
@@ -72,9 +72,9 @@ class RecipesController < ApplicationController
     flash[:danger] = "You can only like/dislike a recipe once"
     
     redirect_to :back
-  end
+    end
   
-end
+  end
   
   # here we are whitelisting or writting out the peramiters our app can permit to flow through
   # for creating a new recipe with our new form 

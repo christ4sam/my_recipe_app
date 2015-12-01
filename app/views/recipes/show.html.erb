@@ -5,8 +5,8 @@
 <!--//this is were the gravatar image will be displays on the show recipe page for individual recipe//-->
 <div class="row">
   <div class="col-md-4 pull-right center">
-    <%= gravatar_for @recipe.chef, size: 200 %>
-    
+    <%= link_to  gravatar_for(@recipe.chef, size: 200), chef_path(@recipe.chef) %>  
+    <!--here we are making the shef image on the recipe show page to take us to the chef show page when is clicked-->
     <p>
       <h5>Brought to you by: <%= @recipe.chef.chefname %></h5>
     </p>

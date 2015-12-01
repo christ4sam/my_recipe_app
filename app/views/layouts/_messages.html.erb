@@ -2,7 +2,7 @@
 <!--it displays all our error messages be it success, warning of denger messages 
 at the top of our pages-->
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-md-12">
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %>
     <!--this will give us the + sign to click on and closs the message box-->

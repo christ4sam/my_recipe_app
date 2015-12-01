@@ -30,3 +30,18 @@ Testing specs for chef model
 -email must be valid
 
 
+Building Chef Authentication system
+
+what we have already
+-Chef model and validations
+-chefs table with columns of chefname and email
+
+What we need to build now:
+-Add password column to the chefs table so chefs can be authenticated and logged in
+-Use email as log in creidentials, since email is unique
+-Ability to register new chefs to use our app
+-Ability to diplays chefs profile
+-Ability to list all chefs in our app
+-Ability for chefs to log in and log out of our app
+-Restrict actions like create recipe, edit recipe and like features to only logged in chefs
+-Restricting the editing of recipes to be done by the chefs who creadted the recipes

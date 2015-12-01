@@ -6,7 +6,7 @@
     This is the Home Page of Make your dish 
   </h2>
   
-  <%=link_to "Sign up Now", "", class: "btn btn-lg btn-success" %>
+  <%=link_to "Sign up Now", register_path, class: "btn btn-lg btn-success" %>
 </div>
 
 <div class="row">
@@ -20,10 +20,10 @@
   
   <div class="col-lg-4">
     <h3 class=midrow>
-      View Recipe as a Guest User
+     Check out our chefs
     </h3>
-    <h2 class="left">Browse and view Recipe as a guest and Sign up later</h2>
-    <p><%= link_to "Browse Recipes", "", class: "btn btn-warning btn-small" %></p>
+    <h2 class="left">Browse and view chefs as a guest and Sign up later</h2>
+    <p><%= link_to "Browse for Chefs", chefs_path, class: "btn btn-warning btn-small" %></p>
   </div>
   
   <div class="col-lg-4">
@@ -31,6 +31,6 @@
       View Recipe as a Guest User
     </h3>
     <h2 class="left">Browse and view Recipe as a guest and Sign up later</h2>
-    <p><%= link_to "Browse Recipes", "", class: "btn btn-warning btn-small" %></p>
+    <p><%= link_to "Log in to your account", login_path, class: "btn btn-warning btn-small" %></p>
   </div>
 </div>
