@@ -14,6 +14,10 @@
 
   <!---Here we are displaying the summary and discription of the recipe in the show page-->
   <div class="col-md-8">
+    <!--here we want to make sure that chef editing recipe is the owner of the recipe they edit and is logged in-->
+    <% if logged_in? and @recipe.chef == current_user %>
+    <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-success pull-right" %>
+    <% end %>
     <h3><%= @recipe.summary %></h3>
     
       <!--here we want to also want our image to appear in the recipe show page-->
@@ -38,7 +42,6 @@
       </div>
     </div>
     
-    <%= link_to "Edit Recipe", edit_recipe_path(@recipe), class: "btn btn-success pull-right" %>
   </div>
 </div>
 

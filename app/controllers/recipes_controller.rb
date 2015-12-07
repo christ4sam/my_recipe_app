@@ -1,4 +1,16 @@
 class RecipesController < ApplicationController
+  
+  before_action :set_recipe, only: [:edit, :update, :show, :like]
+  # Here we want to make sure sure that chef can only edit the reicpes they create them self
+  # here we want this require_same_user method befor_action to be executed or run first before 
+  # edit and update actions to verify that the current logged in user owns the recipe they want to edit or update
+  # and that this actions can not be done through the browser as well
+  before_action :require_same_user, only: [:edit, :update]
+  
+  #here users that are NOT logged in can browse only the index (list recipe page)and the show recipe page
+  before_action :require_user, except: [:show, :index] 
+  
+  
   #here we are sorting the recipe by most popular with the highest vote
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 4)
@@ -7,7 +19,7 @@ class RecipesController < ApplicationController
   
   
   def show 
-    @recipe = Recipe.find(params[:id])
+    #@recipe = Recipe.find(params[:id])
     
   end
   
@@ -22,7 +34,7 @@ class RecipesController < ApplicationController
   # recipe created is assigned to a chef
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.chef = Chef.find(2)   #the chef object creating recipe
+    @recipe.chef = current_user #must log in to be able to create a recipe
     
       if @recipe.save
         flash[:success] = "Your recipe was created successfully!"
@@ -38,7 +50,7 @@ class RecipesController < ApplicationController
   
   # here we are retriving a particular recipe we want to edit using the params which has the id
   def edit
-    @recipe = Recipe.find(params[:id])
+    #@recipe = Recipe.find(params[:id])
     
     
   end
@@ -46,7 +58,7 @@ class RecipesController < ApplicationController
   # after the recipe is edited and submited we redirect user back to the edited 
   #recipe show page else  we render the edit form again
   def update
-    @recipe = Recipe.find(params[:id])
+    #@recipe = Recipe.find(params[:id])
    
     if @recipe.update(recipe_params)
       flash[:success] = "Your recipe was updated successfully!"
@@ -63,8 +75,9 @@ class RecipesController < ApplicationController
   #this is our like action for our recipe conotroller that gives 
   #chef the ability to find and like recipe
   def like
-    @recipe = Recipe.find(params[:id])
-    like = Like.create(like: params[:like], chef: Chef.first, recipe:@recipe)
+    #@recipe = Recipe.find(params[:id])
+    #to like a recipe chef must be logged in as current_user(befor_action)
+    like = Like.create(like: params[:like], chef: current_user, recipe:@recipe)
     if like.valid?
       flash[:success] = "Your selection was successful"
       redirect_to :back
@@ -83,6 +96,22 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :summary, :description, :picture)
   end
+  
+  #this set_chef method for params(:id) will be executed before the edit, update and show actions
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+    
+  end
+  
+ # Here we want to make sure sure that chef can only edit the reicpes they create them self
+  def require_same_user
+    if current_user != @recipe.chef
+        flash[:danger] = "You can only edit your own recipes"
+        redirect_to recipes_path
+    end
+    
+  end
+  
   
   
 end

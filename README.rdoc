@@ -45,3 +45,13 @@ What we need to build now:
 -Ability for chefs to log in and log out of our app
 -Restrict actions like create recipe, edit recipe and like features to only logged in chefs
 -Restricting the editing of recipes to be done by the chefs who creadted the recipes
+
+
+Authentication Updates:
+1. show recipe page -> Ability to edit/update only own recipes
+2. Navigation partial -> Toggle our Menu, restric new
+3. Restric thumbs up and thumbs down actions only to logged_in users 
+4. Recipe -- update to current_user
+5. Like -- update to current_user
+6. Before_action  :require_user, except: [:show, :index]
+7. Before_action  :require_same_user for chefs, only: [edit, :update]

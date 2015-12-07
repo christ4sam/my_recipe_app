@@ -1,7 +1,6 @@
 <%= render 'shared/page_title', title: 'All Recipes' %>
 
-<%= will_paginate %>
-
+ <%= will_paginate %>
 
 <% @recipes.each do |recipe| %>
  
@@ -10,7 +9,7 @@
     
     <div class="col-md-2">
       <section class="chef_info center">
-        <%= gravatar_for(recipe.chef, size: 120) if recipe.chef.email? %>
+        <%= link_to gravatar_for(recipe.chef, size: 120), chef_path(recipe.chef) %>
         <h5>Chef name: <%= recipe.chef.chefname %></h5>
       </section>
     </div>
