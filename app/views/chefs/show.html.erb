@@ -20,7 +20,7 @@
   <!--Here we want to display all the recipes created by this chef-->
   
   <% @recipes.each do |recipe| %>
-   <!--displays the recipes name and summary and if the name is clicked will take to show page-->
+   <!--displays the recipes name and summary and if the name is clicked will take us to show page-->
   <div class="row">
     <div class="col-lg-6 well col-lg-offset-3">
       <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
