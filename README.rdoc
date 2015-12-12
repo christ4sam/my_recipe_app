@@ -55,3 +55,10 @@ Authentication Updates:
 5. Like -- update to current_user
 6. Before_action  :require_user, except: [:show, :index]
 7. Before_action  :require_same_user for chefs, only: [edit, :update]
+
+
+
+Many to Many Association:
+1. we will implement using has_many through asssociation
+2. Requires a join table
+3. One object/row in one tabel can be associated with multiple rows in a 2nd table and vice-versa
