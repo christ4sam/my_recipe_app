@@ -26,10 +26,15 @@
     <div class="col-lg-6 well">
       <h4><%= link_to recipe.name,  recipe_path(recipe) %></h4>
       <p><%= recipe.summary %></p>
-      
+     
+      <!--here we want recipes without style or ingredient associated to them not to diplay any style or ingredient space -->
+      <% if recipe.styles.any? %>
       <!--here we want to diplays the styles and ingredients associated to each recipe and displays it under summary-->
       <p>Styles: <%= render recipe.styles %></p>
+      <% end %>
+      <% if recipe.ingredients.any? %>
       <p>Ingredients: <%= render recipe.ingredients %></p>
+      <% end %>
       
       <!--diplays on the page when each recipe was created and updated-->
       <p>

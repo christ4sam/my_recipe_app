@@ -26,13 +26,13 @@
      <!--this code allows user to tick check boxes  to select style or ingredients they want -->
      <strong>Styles:</strong>
      <%= f.collection_check_boxes :style_ids, Style.all, :id, :name do |checkbx| %>
-      <% checkbx.label(class: "checkbox-inline") {checkbx.check_box(class: "checkbox") + checkbx.text} %>
+      <% checkbx.label(class: "checkbox-inline input_checkbox") {checkbx.check_box(class: "checkbox") + checkbx.text} %>
       <% end %>
       <br><br>
       
       <strong>Ingredeints:</strong>
      <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cbi| %>
-      <% cbi.label(class: "checkbox-inline") {cbi.check_box(class: "checkbox") + cbi.text} %>
+      <% cbi.label(class: "checkbox-inline input_checkbox") {cbi.check_box(class: "checkbox") + cbi.text} %>
       <% end %>
       <br><br>
      

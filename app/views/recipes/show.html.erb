@@ -26,10 +26,14 @@
       </div>
       
       <div class="well">
-        
         <!--here we want to diplays the styles and ingredients associated to each recipe and displays it under summary-->
+        <!--again we want recipes with no style or ingredient associated to them not to diplay any style or ingredient space -->
+      <% if @recipe.styles.any? %>
       <p>Styles: <%= render @recipe.styles %></p>
+      <% end %>
+      <% if @recipe.ingredients.any? %>
       <p>Ingredients: <%= render @recipe.ingredients %></p>
+      <% end %>
      
       <p><strong>Steps to make this dish:</strong></p>
       
