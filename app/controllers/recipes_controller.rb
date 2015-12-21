@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
   # edit and update actions to verify that the current logged in user owns the recipe they want to edit or update
   # and that this actions can not be done through the browser as well
   before_action :require_same_user, only: [:edit, :update]
+  #here we are saying the log in user has to be admin user for them to be able to destroy any recipe
+  before_action :admin_user, only: :destroy
   
  
   
@@ -92,6 +94,12 @@ class RecipesController < ApplicationController
   
   end
   
+  def destroy
+    Recipe.find(params[:id]).destroy
+    flash[:success] = "Recipe Deleted"
+    redirect_to recipes_path
+  end
+  
   # here we are whitelisting or writting out the peramiters our app can permit to flow through
   # for creating a new recipe with our new form 
   private
@@ -106,9 +114,9 @@ class RecipesController < ApplicationController
     
   end
   
- # Here we want to make sure sure that chef can only edit the reicpes they create them self
+ # Here we want to make sure sure that chef can only edit the reicpes they create them self or they are admin
   def require_same_user
-    if current_user != @recipe.chef
+    if current_user != @recipe.chef and !current_user.admin?
         flash[:danger] = "You can only edit your own recipes"
         redirect_to recipes_path
     end
@@ -124,6 +132,11 @@ class RecipesController < ApplicationController
       redirect_to  :back
    
     end
+ end
+ 
+ #this is the action that allows only the admin user to delete recipe 
+ def admin_user
+   redirect_to recipes_path unless current_user.admin?
  end
   
   

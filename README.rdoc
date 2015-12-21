@@ -63,4 +63,4 @@ Many to Many Association:
 2. Requires a join table
 3. One object/row in one tabel can be associated with multiple rows in a 2nd table and vice-versa
 
-new start should be lecture NO 6
+new start should be lecture NO 
