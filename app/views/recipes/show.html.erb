@@ -20,7 +20,7 @@
     <% end %>
     
     <!--here we are gigen only the admin the ability to delete recipes-->
-    <% if current_user.admin? %>
+    <% if logged_in? and current_user.admin? %>
     <%= link_to "[Delete Recipe]", @recipe, method: :delete, data: { confirm: "Are you sure?"} %>
     <% end %>
     
