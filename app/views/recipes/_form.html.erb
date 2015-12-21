@@ -1,5 +1,5 @@
 
-<!--this code lokks for the error message file and renders it here and gives it @recipe as the obj the -->
+<!--this code looks for the error message file and renders it here and gives it @recipe as the obj the -->
  <!--the error is for to create new recipe-->
 
 <%= render 'shared/errors', obj: @recipe %>
@@ -13,7 +13,7 @@
 <div class="row">
   <div class="well col-md-8 col-md-offset-2">
     <%= form_for(@recipe, html: { multipart: true }) do |f| %> 
-    <!-- the above line of code will give us the ability to include file for image in our form-->
+    <!-- the above line of code will give us the ability to include file uploader for image in our form-->
      <%= f.label :name %>
      <%= f.text_field :name %>
      
@@ -23,7 +23,20 @@
      <%= f.label :description %>
      <%= f.text_area :description, rows: 10 %>
      
-     <!--the column for image-->
+     <!--this code allows user to tick check boxes  to select style or ingredients they want -->
+     <strong>Styles:</strong>
+     <%= f.collection_check_boxes :style_ids, Style.all, :id, :name do |checkbx| %>
+      <% checkbx.label(class: "checkbox-inline") {checkbx.check_box(class: "checkbox") + checkbx.text} %>
+      <% end %>
+      <br><br>
+      
+      <strong>Ingredeints:</strong>
+     <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cbi| %>
+      <% cbi.label(class: "checkbox-inline") {cbi.check_box(class: "checkbox") + cbi.text} %>
+      <% end %>
+      <br><br>
+     
+     <!--this is the column for image-->
      <span class="picture">
        <%= f.file_field :picture, accept: 'image/jpeg, image/gif, image/png' %>
      </span>

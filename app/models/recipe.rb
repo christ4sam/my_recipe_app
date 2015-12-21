@@ -13,7 +13,7 @@ class Recipe < ActiveRecord::Base
   
   mount_uploader :picture, PictureUploader
   validate :picture_size   #ensures the image size allowed is less than 5MB
-  default_scope -> { order(updated_at: :desc) }#diplays the most recent recipe created
+  default_scope -> { order(updated_at: :desc) }#sort and diplays the most recent recipe created at the top
   
   #this is the method to count the total thumbs up votes  and total thumbs down votes each recipe has
   def thumbs_up_total
@@ -34,4 +34,4 @@ class Recipe < ActiveRecord::Base
       end
     end
       
-end
+  end

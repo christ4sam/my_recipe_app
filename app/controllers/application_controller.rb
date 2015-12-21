@@ -1,6 +1,6 @@
 
 #All methods that will be used in all our controllers has to be defind in the application controller
-# So all the methods we have here are methods that will be used in or call from any were in  application
+# So all the methods we have here are methods that will be used in or call from any were in our application
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   
-  # every methods create in the application_controller is avalible to all other controllers in our
+  # every methods create in the application_controller is avalible for use to all other controllers in our
   # application but they are not available to our views we specifiys them as helper methods below
   
   helper_method :current_user, :logged_in?  # makes this methods avaliable to our views
@@ -30,13 +30,13 @@ class ApplicationController < ActionController::Base
     !! current_user
   end
   
- # requre_user action is defind in our application controller because is a method that will be 
- #used in all aor controllers
+ # requre_user action is defind in our application controller because is a method we will be 
+ #using in all our controllers
  
  def require_user
     if !logged_in?
       flash[:danger] = "You must be logged in to perform that action"
-      redirect_to :back
+      redirect_to  recipes_path
    
     end
  end

@@ -1,0 +1,22 @@
+<%= render 'shared/page_title', title: 'Create new Ingredient' %>
+
+<!--this code lokks for the error message file and renders it here and gives it @ingredient as the obj the -->
+ <!--the error is for to create new ingredient-->
+
+<%= render 'shared/errors', obj: @ingredient %>
+
+
+<!--This form is moved to a shared file, form partial so the code can be used for the new and editing ingredient  -->
+<!--which are both under the same folder-->
+
+<!-- this is a model back form to create a new ingredient, and we want the form to be in the middle of the page and with a well style -->
+
+<div class="row">
+  <div class="well col-md-8 col-md-offset-2">
+    <%= form_for @ingredient do |f| %> 
+     <%= f.label :name %>
+     <%= f.text_field :name %>
+     <%= f.submit 'Create New Ingredient', class: "btn btn-success" %>
+     <% end %>
+  </div>
+</div>

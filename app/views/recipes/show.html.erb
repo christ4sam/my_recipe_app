@@ -24,9 +24,15 @@
       <div class="show_recipe">
         <%= image_tag(@recipe.picture.url, class: "gravatar") if @recipe.picture? %>
       </div>
-    
-    <div class="well">
+      
+      <div class="well">
+        
+        <!--here we want to diplays the styles and ingredients associated to each recipe and displays it under summary-->
+      <p>Styles: <%= render @recipe.styles %></p>
+      <p>Ingredients: <%= render @recipe.ingredients %></p>
+     
       <p><strong>Steps to make this dish:</strong></p>
+      
       <%= simple_format(@recipe.description) %>
       
       <!--here we are displaying our likes tumbup/tumbdown future-->
@@ -43,7 +49,8 @@
     </div>
     
   </div>
+  <!--this link is in the recipe show page will take us back to the page that lists all our recipes-->
+<h5><%= link_to 'Return to Recipes', recipes_path, class: "btn btn-warning btn-small"%></h5>
+
 </div>
 
-<!--this link is in the recipe show page will take us back to the page that lists all our recipes-->
-<h5><%= link_to 'Return to Recipes', recipes_path, class: "btn btn-warning btn-small"%></h5>
